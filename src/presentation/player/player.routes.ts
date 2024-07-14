@@ -12,7 +12,7 @@ export class PlayerRoutes {
     const playerService = new PlayerService(userService);
     const controller = new PlayerController(playerService);
 
-    router.use(AuthMiddleware.protect);
+    // router.use(AuthMiddleware.protect);
     router.get("/:id", controller.findOnePlayer);
     router.post("/", controller.createPlayer);
 
