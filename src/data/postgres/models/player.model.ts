@@ -30,7 +30,6 @@ export class Player extends BaseEntity {
   @Column({
     type: "int",
     nullable: false,
-    unique: true,
     default: 1,
   })
   level: number;

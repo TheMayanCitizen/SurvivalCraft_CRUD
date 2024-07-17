@@ -19,7 +19,7 @@ export class PlayerController {
 
     if (error) return res.status(422).json({ message: error });
 
-    const sessionUserId = 1;
+    const sessionUserId = req.body.sessionUser.id;
     this.playerService
       .createPlayer(createPlayerDto!, sessionUserId)
       .then((player) => res.status(201).json(player))

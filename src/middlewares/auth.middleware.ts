@@ -8,7 +8,7 @@ export class AuthMiddleware {
     if (!authorization)
       return res.status(401).json({ message: "No token provided" });
 
-    if (!authorization.startsWith("Bearer"))
+    if (!authorization.startsWith("Bearer "))
       return res.status(401).json({ message: "Invalid token" });
 
     const token = authorization.split(" ").at(1) || "";

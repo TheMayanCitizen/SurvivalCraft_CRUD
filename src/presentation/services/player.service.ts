@@ -18,6 +18,8 @@ export class PlayerService {
     try {
       return await player.save();
     } catch (error) {
+      console.log(error);
+
       throw CustomError.internalServer("Something went wrong");
     }
   }
