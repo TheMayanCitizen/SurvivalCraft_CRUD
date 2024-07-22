@@ -51,4 +51,13 @@ export class PlayerController {
       .then((resp) => res.status(200).json(resp))
       .catch((error) => this.handleError(error, res));
   };
+
+  getPlayerInventory = async (req: Request, res: Response) => {
+    const { id: playerId } = req.params;
+
+    this.inventoryService
+      .findOneInventoryByPlayerId(+playerId)
+      .then((resp) => res.status(200).json(resp))
+      .catch((error) => this.handleError(error, res));
+  };
 }

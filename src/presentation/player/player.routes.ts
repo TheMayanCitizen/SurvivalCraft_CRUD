@@ -20,6 +20,7 @@ export class PlayerRoutes {
 
     router.use(AuthMiddleware.protect);
     router.get("/:id", controller.findOnePlayer);
+    router.get("/:id/inventory", controller.getPlayerInventory);
     router.post("/", controller.createPlayer);
     router.post("/:id/inventory/items", controller.addItemToInventory);
 

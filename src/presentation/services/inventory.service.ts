@@ -83,7 +83,13 @@ export class InventoryService {
       where: {
         id: playerId,
       },
-      relations: ["inventory"],
+      // relations: ["inventory"],
+      relations: {
+        inventory: {
+          inventory_resource: true,
+          inventory_item: true,
+        },
+      },
     });
 
     if (!player) throw CustomError.notFound("Player not found");
