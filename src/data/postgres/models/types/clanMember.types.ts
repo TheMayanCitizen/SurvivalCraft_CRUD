@@ -1,4 +1,4 @@
-export enum Role {
+export enum ClanMemberRole {
   MASTER = "MASTER",
   OFFICER = "OFFICER",
   SUBOFFICER = "SUBOFFICER",

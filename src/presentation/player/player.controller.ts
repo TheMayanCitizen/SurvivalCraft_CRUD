@@ -1,9 +1,17 @@
 import { Request, Response } from "express";
-import { CustomError, RegisterPlayerDto } from "../../domain";
+import {
+  AddItemToIventory,
+  CustomError,
+  RegisterPlayerDto,
+} from "../../domain";
 import { PlayerService } from "../services/player.service";
+import { InventoryService } from "../services/inventory.service";
 
 export class PlayerController {
-  constructor(private readonly playerService: PlayerService) {}
+  constructor(
+    private readonly playerService: PlayerService,
+    private readonly inventoryService: InventoryService
+  ) {}
 
   private handleError = (error: unknown, res: Response) => {
     if (error instanceof CustomError) {
@@ -31,6 +39,16 @@ export class PlayerController {
     this.playerService
       .findOnePlayer(+id)
       .then((player) => res.status(200).json(player))
+      .catch((error) => this.handleError(error, res));
+  };
+  addItemToInventory = async (req: Request, res: Response) => {
+    const { id: playerId } = req.params;
+    const [error, addItemToIventoryDTO] = AddItemToIventory.create(req.body);
+    if (error) return res.status(422).json({ message: error });
+
+    this.inventoryService
+      .addItemToInventory(+playerId, addItemToIventoryDTO!)
+      .then((resp) => res.status(200).json(resp))
       .catch((error) => this.handleError(error, res));
   };
 }

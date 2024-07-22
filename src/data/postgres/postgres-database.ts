@@ -9,6 +9,8 @@ import { Item } from "./models/item.model";
 import { Quest } from "./models/quest.models";
 import { Quest_Player } from "./models/quest_players.model";
 import { Resource } from "./models/resource.model";
+import { Inventory_item } from "./models/inventoryItem.model";
+import { Inventory_resource } from "./models/inventoryResource.model";
 
 interface Options {
   host: string;
@@ -40,6 +42,8 @@ export class PostgresDatabase {
         Quest,
         Quest_Player,
         Resource,
+        Inventory_item,
+        Inventory_resource,
       ],
       synchronize: true,
       ssl: {

@@ -7,9 +7,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Role } from "./types/clanMember.types";
+
 import { Player } from "./player.model";
 import { Clan } from "./clan.model";
+import { ClanMemberRole } from "./types/clanMember.types";
 
 @Entity()
 export class Clan_Member extends BaseEntity {
@@ -17,10 +18,10 @@ export class Clan_Member extends BaseEntity {
   id: number;
 
   @Column("enum", {
-    enum: Role,
-    default: Role.MEMBER,
+    enum: ClanMemberRole,
+    default: ClanMemberRole.MEMBER,
   })
-  role: Role;
+  role: ClanMemberRole;
 
   @CreateDateColumn()
   created_at: Date;

@@ -17,14 +17,9 @@ export class Clan extends BaseEntity {
   @Column("varchar", {
     length: 100,
     nullable: false,
-    unique: true,
+    // unique: true,
   })
   name: string;
-
-  @Column("text", {
-    nullable: false,
-  })
-  description: string;
 
   @CreateDateColumn()
   created_at: Date;
