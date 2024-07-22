@@ -60,4 +60,13 @@ export class PlayerController {
       .then((resp) => res.status(200).json(resp))
       .catch((error) => this.handleError(error, res));
   };
+
+  findAllQuestByPlayerId = async (req: Request, res: Response) => {
+    const { id: playerId } = req.params;
+
+    this.playerService
+      .findOnePlayerQuests(+playerId)
+      .then((player) => res.status(200).json(player))
+      .catch((error) => this.handleError(error, res));
+  };
 }

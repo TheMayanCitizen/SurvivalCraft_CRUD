@@ -57,4 +57,21 @@ export class PlayerService {
 
     return player;
   }
+
+  async findOnePlayerQuests(id: number) {
+    const player = await Player.findOne({
+      where: {
+        id,
+      },
+      relations: ["quest_players"],
+    });
+
+    if (!player) throw CustomError.notFound("Player not found hommie");
+
+    if (player.quest_players.length === 0)
+      throw CustomError.notFound("You have not quests hommie");
+    console.log(player);
+
+    return player;
+  }
 }
