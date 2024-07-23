@@ -33,6 +33,7 @@ export class Construction extends BaseEntity {
   @Column({
     type: "int",
     nullable: false,
+    default: 1,
   })
   level: number;
 
