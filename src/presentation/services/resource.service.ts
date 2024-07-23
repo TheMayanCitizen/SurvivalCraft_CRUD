@@ -15,6 +15,14 @@ export class ResourceService {
   }
 
   async createResource(createResourceDTO: CreateResourceDTO) {
+    const resourceExists = await Resource.findOne({
+      where: {
+        name: createResourceDTO.name,
+      },
+    });
+
+    if (resourceExists) throw CustomError.badRequest("Resource already exists");
+
     const resource = new Resource();
     resource.name = createResourceDTO.name;
     resource.description = createResourceDTO.description;
