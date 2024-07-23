@@ -3,7 +3,7 @@ export class CreateConstructionDTO {
     public readonly name: string,
     public readonly type: string,
     public readonly location: string,
-    public readonly playerId: string
+    public readonly playerId: number
   ) {}
 
   static create(object: {

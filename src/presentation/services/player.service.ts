@@ -84,4 +84,24 @@ export class PlayerService {
 
     return player.quest_players;
   }
+
+  async findIfPlayerExist(id: number) {
+    const player = await Player.findOne({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        name: true,
+        level: true,
+        experience: true,
+        health: true,
+        energy: true,
+      },
+    });
+
+    if (!player) throw CustomError.notFound("Player not found hommie");
+
+    return player;
+  }
 }
