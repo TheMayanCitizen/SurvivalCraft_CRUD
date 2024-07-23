@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AddQuestPlayerDTO, CustomError } from "../../domain";
+import { AddQuestPlayerDTO, CreateQuestDTO, CustomError } from "../../domain";
 import { QuestService } from "../services/quest.service";
 
 export class QuestController {
@@ -24,6 +24,16 @@ export class QuestController {
       .then((resp) =>
         res.status(200).json({ message: "Quest added to player" })
       )
+      .catch((error) => this.handleError(error, res));
+  };
+
+  createNewQuest = async (req: Request, res: Response) => {
+    const [error, createQuestDTO] = CreateQuestDTO.create(req.body);
+    if (error) return res.status(422).json({ message: error });
+
+    this.questService
+      .createNewQuest(createQuestDTO!)
+      .then((resp) => res.status(200).json({ message: "Quest created" }))
       .catch((error) => this.handleError(error, res));
   };
 }

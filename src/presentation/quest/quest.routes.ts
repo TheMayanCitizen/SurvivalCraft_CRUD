@@ -14,6 +14,7 @@ export class QuestRoutes {
     const controller = new QuestController(questService);
 
     router.post("/:playerId/assign", controller.addQuestToPlayer);
+    router.post("/create-quest", controller.createNewQuest);
 
     return router;
   }

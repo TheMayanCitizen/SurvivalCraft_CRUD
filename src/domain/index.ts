@@ -7,3 +7,4 @@ export * from "./dtos/quest/add-quest-player.dto";
 export * from "./dtos/resource/create-resource.dto";
 export * from "./dtos/construction/create-construction.dto";
 export * from "./dtos/clan/create-clan.dto";
+export * from "./dtos/quest/create-quest.dto";
