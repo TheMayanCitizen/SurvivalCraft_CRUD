@@ -69,4 +69,13 @@ export class PlayerController {
       .then((player) => res.status(200).json(player))
       .catch((error) => this.handleError(error, res));
   };
+
+  findAllConstructionsByPlayerId = async (req: Request, res: Response) => {
+    const { id: playerId } = req.params;
+
+    this.playerService
+      .findAllPlayerConstructions(+playerId)
+      .then((player) => res.status(200).json(player))
+      .catch((error) => this.handleError(error, res));
+  };
 }

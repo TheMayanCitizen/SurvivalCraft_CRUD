@@ -33,4 +33,6 @@ export class ConstructionService {
       throw CustomError.internalServer("Something went very wrong! 🧨");
     }
   }
+
+  async findAllConstructionsByPlayerId(id: number) {}
 }

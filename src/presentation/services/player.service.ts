@@ -104,4 +104,10 @@ export class PlayerService {
 
     return player;
   }
+
+  async findAllPlayerConstructions(id: number) {
+    const player = this.findIfPlayerExist(id);
+
+    return player;
+  }
 }
