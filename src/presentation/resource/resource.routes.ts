@@ -10,6 +10,7 @@ export class ResourceRoutes {
     const controller = new ResourceController(resourceService);
 
     router.post("/create-new-resource", controller.createNewResource);
+    router.get("/all-resources", controller.findAllResources);
 
     return router;
   }

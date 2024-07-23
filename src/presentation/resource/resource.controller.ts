@@ -23,4 +23,11 @@ export class ResourceController {
       .then((resource) => res.status(201).json(resource))
       .catch((error) => this.handleError(error, res));
   };
+
+  findAllResources = async (req: Request, res: Response) => {
+    this.resourceService
+      .findAllResources()
+      .then((resources) => res.status(200).json(resources))
+      .catch((error) => this.handleError(error, res));
+  };
 }

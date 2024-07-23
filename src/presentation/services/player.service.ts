@@ -63,7 +63,18 @@ export class PlayerService {
       where: {
         id,
       },
-      relations: ["quest_players"],
+      relations: ["quest_players", "quest_players.quest"],
+      select: {
+        quest_players: {
+          completed: true,
+          quest: {
+            name: true,
+            description: true,
+            reward: true,
+            exp: true,
+          },
+        },
+      },
     });
 
     if (!player) throw CustomError.notFound("Player not found hommie");
@@ -71,6 +82,6 @@ export class PlayerService {
     if (player.quest_players.length === 0)
       throw CustomError.notFound("You have not quests hommie");
 
-    return player;
+    return player.quest_players;
   }
 }

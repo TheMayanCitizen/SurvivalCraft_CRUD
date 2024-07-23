@@ -33,4 +33,12 @@ export class ResourceService {
       throw CustomError.internalServer("Something went very wrong! 🧨");
     }
   }
+
+  async findAllResources() {
+    try {
+      return await Resource.find();
+    } catch (error) {
+      throw CustomError.internalServer("Something went very wrong! 🧨");
+    }
+  }
 }
