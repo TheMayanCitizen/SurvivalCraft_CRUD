@@ -70,7 +70,6 @@ export class PlayerService {
 
     if (player.quest_players.length === 0)
       throw CustomError.notFound("You have not quests hommie");
-    console.log(player);
 
     return player;
   }
