@@ -1,6 +1,6 @@
-import { Clan_Member } from "../../data";
+import { Clan, Clan_Member } from "../../data";
 import { ClanMemberRole } from "../../data/postgres/models/types/clanMember.types";
-import { CustomError, JoinMember } from "../../domain";
+import { CreateClanDTO, CustomError, JoinMember } from "../../domain";
 import { PlayerService } from "./player.service";
 
 export class ClanService {
@@ -42,6 +42,25 @@ export class ClanService {
       return await clanMember.save();
     } catch (error) {
       throw CustomError.internalServer("Something went wrong");
+    }
+  }
+
+  async createClan(createClanDTo: CreateClanDTO) {
+    const clanNameExists = await Clan.findOne({
+      where: {
+        name: createClanDTo.name,
+      },
+    });
+
+    if (clanNameExists) throw CustomError.badRequest("Name already exists");
+
+    const clan = new Clan();
+    clan.name = createClanDTo.name;
+
+    try {
+      return await clan.save();
+    } catch (error) {
+      throw CustomError.internalServer("Something went very wrong! 🧨");
     }
   }
 }

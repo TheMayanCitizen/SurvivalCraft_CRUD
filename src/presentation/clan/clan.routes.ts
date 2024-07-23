@@ -14,6 +14,7 @@ export class ClanRoutes {
     const controller = new ClanController(clanService);
 
     router.post("/:playerReceiverId/join", controller.addMemberToClan);
+    router.post("/create-clan", controller.createClan);
 
     return router;
   }

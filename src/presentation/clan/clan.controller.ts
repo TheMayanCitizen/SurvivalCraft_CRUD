@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CustomError, JoinMember } from "../../domain";
+import { CreateClanDTO, CustomError, JoinMember } from "../../domain";
 import { ClanService } from "../services/clan.service";
 
 export class ClanController {
@@ -22,6 +22,16 @@ export class ClanController {
     this.clanService
       .addMemberToClan(+playerReceiverId, joinMemberDTO!)
       .then((resp) => res.status(200).json({ message: "Member added to clan" }))
+      .catch((error) => this.handleError(error, res));
+  };
+
+  createClan = async (req: Request, res: Response) => {
+    const [error, createClanDTO] = CreateClanDTO.create(req.body);
+    if (error) return res.status(422).json({ message: error });
+
+    this.clanService
+      .createClan(createClanDTO!)
+      .then((resp) => res.status(200).json({ message: "Clan created" }))
       .catch((error) => this.handleError(error, res));
   };
 }
