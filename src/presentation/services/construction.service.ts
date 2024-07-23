@@ -34,5 +34,15 @@ export class ConstructionService {
     }
   }
 
-  async findAllConstructionsByPlayerId(id: number) {}
+  async findAllConstructionsByPlayerId(player: Player) {
+    const construction = await Construction.find({
+      where: {
+        player,
+      },
+    });
+
+    if (!construction) throw CustomError.notFound("Construction not found");
+
+    return construction;
+  }
 }

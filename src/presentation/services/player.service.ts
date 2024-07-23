@@ -82,7 +82,8 @@ export class PlayerService {
     if (player.quest_players.length === 0)
       throw CustomError.notFound("You have not quests hommie");
 
-    return player.quest_players;
+    const quests = player.quest_players;
+    return quests;
   }
 
   async findIfPlayerExist(id: number) {
@@ -106,8 +107,23 @@ export class PlayerService {
   }
 
   async findAllPlayerConstructions(id: number) {
-    const player = this.findIfPlayerExist(id);
+    //Let's just make it work.
+    const player = await Player.findOne({
+      where: {
+        id,
+      },
+      relations: ["construction"],
+    });
 
-    return player;
+    if (!player) throw CustomError.notFound("Player not found hommie");
+
+    if (player.construction.length === 0)
+      throw CustomError.notFound("You have not constructions hommie");
+
+    const constructions = player.construction;
+    return constructions;
+
+    // const player = this.findIfPlayerExist(id);
+    console.log(player);
   }
 }
