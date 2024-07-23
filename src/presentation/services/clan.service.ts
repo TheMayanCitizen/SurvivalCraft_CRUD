@@ -63,4 +63,21 @@ export class ClanService {
       throw CustomError.internalServer("Something went very wrong! 🧨");
     }
   }
+
+  async findAllMembersByClanId(clanId: number) {
+    const clanMembers = await Clan.findOne({
+      where: {
+        id: clanId,
+      },
+      relations: {
+        clan_member: true,
+      },
+    });
+
+    if (!clanMembers) throw CustomError.notFound("Clan not found");
+
+    // const clanMembers = clanMembers.clan_member;
+
+    return clanMembers;
+  }
 }

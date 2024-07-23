@@ -15,6 +15,7 @@ export class ClanRoutes {
 
     router.post("/:playerReceiverId/join", controller.addMemberToClan);
     router.post("/create-clan", controller.createClan);
+    router.get("/:clanId/members", controller.findAllMembersByClanId);
 
     return router;
   }

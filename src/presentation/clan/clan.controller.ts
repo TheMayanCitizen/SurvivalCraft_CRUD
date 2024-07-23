@@ -34,4 +34,13 @@ export class ClanController {
       .then((resp) => res.status(200).json({ message: "Clan created" }))
       .catch((error) => this.handleError(error, res));
   };
+
+  findAllMembersByClanId = async (req: Request, res: Response) => {
+    const { clanId } = req.params;
+
+    this.clanService
+      .findAllMembersByClanId(+clanId)
+      .then((clanMembers) => res.status(200).json(clanMembers))
+      .catch((error) => this.handleError(error, res));
+  };
 }
